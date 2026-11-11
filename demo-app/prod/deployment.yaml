@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-prod
+spec:
+  selector:
+    matchLabels:
+      app: demo-app-prod
+  replicas: 1
+  template:
+    metadata:
+      name: demo-app-prod
+      labels:
+        app: demo-app-prod
+    spec:
+      containers:
+        - name: demo-container
+          image: public.ecr.aws/viadee/k8s-demo-app-native:1.4.0-rc3
+          ports:
+            - containerPort: 8080
+              name: http
+          resources:
+            limits:
+              memory: 100Mi
+              cpu: 100m
+            requests:
+              memory: 100Mi
+              cpu: 100m
+          envFrom:
+            - configMapRef:
+                name: app-config
+                optional: true
+      restartPolicy: Always
