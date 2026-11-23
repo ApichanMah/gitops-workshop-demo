@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-app
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/viadee-internal/gitops-workshop-demo.git
+        revision: main
+        directories:
+          - path: demo-app/*
+  template:
+    metadata:
+      name: 'demo-app-{{.path.basenameNormalized}}'
+    spec:
+      project: demo
+      source:
+        repoURL: https://github.com/viadee-internal/gitops-workshop-demo.git
+        targetRevision: main
+        path: '{{.path.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: demo
+      syncPolicy:
+        automated: {}
