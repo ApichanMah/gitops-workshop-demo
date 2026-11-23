@@ -3,6 +3,9 @@ kind: ApplicationSet
 metadata:
   name: demo-app
 spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
   generators:
     - git:
         repoURL: https://github.com/max-bastin/gitops-workshop-demo
