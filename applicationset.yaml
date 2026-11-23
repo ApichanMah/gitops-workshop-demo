@@ -5,7 +5,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/viadee-internal/gitops-workshop-demo.git
+        repoURL: https://github.com/max-bastin/gitops-workshop-demo
         revision: main
         directories:
           - path: demo-app/*
@@ -15,7 +15,7 @@ spec:
     spec:
       project: demo
       source:
-        repoURL: https://github.com/viadee-internal/gitops-workshop-demo.git
+        repoURL: https://github.com/max-bastin/gitops-workshop-demo
         targetRevision: main
         path: '{{.path.path}}'
       destination:
