@@ -9,7 +9,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/max-bastin/gitops-workshop-demo
-        revision: main
+        revision: feature/new-staging-env
         directories:
           - path: demo-app/*
   template:
@@ -19,7 +19,7 @@ spec:
       project: demo
       source:
         repoURL: https://github.com/max-bastin/gitops-workshop-demo
-        targetRevision: main
+        targetRevision: feature/new-staging-env
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
